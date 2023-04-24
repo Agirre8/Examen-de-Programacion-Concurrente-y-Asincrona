@@ -6,7 +6,7 @@ def ingreso(saldo, cantidad):
 def retiro(saldo, cantidad):
     saldo.value -= cantidad
 
-if __name__ == '__main__':
+def main():
     saldo = Manager().Value('i', 100)
 
     # Procesos que ingresan dinero
