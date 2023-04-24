@@ -78,3 +78,22 @@ def jugar(saldo, banco, num_juegos):
 
     return saldo, num_ganados_num, num_ganados_par, num_ganados_impar, num_ganados_martingala
 
+
+def main():
+    num_juegos = 1000
+    saldo_inicial = 1000
+    banco = Manager().Value("i", 50000)
+    jugadores = [Thread(target=jugar, args=(saldo_inicial, banco, num_juegos)) for _ in range(10)]
+    saldos_finales = []
+
+    for jugador in jugadores:
+        jugador.start()
+
+    for jugador in jugadores:
+        jugador.join()
+        saldo_final = jugador._target[0] # Obtenemos el saldo final del jugador
+        saldos_finales.append(saldo_final)
+
+    print("Saldos finales de los jugadores:", saldos_finales)
+
+main()
