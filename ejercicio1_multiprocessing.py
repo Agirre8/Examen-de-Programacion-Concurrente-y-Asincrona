@@ -27,7 +27,6 @@ if __name__ == '__main__':
             p = mp.Process(target=proceso_retirada, args=retirada)
             procesos.append(p)
             p.start()
-        
         for proceso in procesos:
             proceso.join()
 
